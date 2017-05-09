@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --open"
+    "start": " webpack-dev-server --hot --open --host 0.0.0.0"
   },
   "babel": {
     "presets": [

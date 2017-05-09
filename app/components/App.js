@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Button } from 'react-bootstrap';
 import ShowResults from './ShowResults';
 import Monster from 'react-icons/lib/fa/optin-monster';
+import FaHandPointerO from 'react-icons/lib/fa/hand-pointer-o';
 
 function App(props){
   return(
@@ -36,10 +37,10 @@ class Information extends React.Component {
       inputs:[{input: ""}]
     };
     this.appendInput = this.appendInput.bind(this);
-    this.submit = this.submit.bind(this);
+    this.submitQuery = this.submitQuery.bind(this);
   }
 
-  submit(event){
+  submitQuery(event){
     let openSearch = true;
     this.state.inputs.map(Obj => {
       if(Obj.input === ""){
@@ -47,7 +48,7 @@ class Information extends React.Component {
       }
     });
 
-    openSearch ? this.setState({search: true}) : this.setState({search: false});
+    openSearch ? this.setState({search: true, empty: false}) : this.setState({search: false, empty: true});
     event.preventDefault(); 
   }
 
@@ -69,7 +70,6 @@ class Information extends React.Component {
   }
 
   handleRemoveQuery(idx){
-    console.log("TEST");
   }
 
   render() {
@@ -80,21 +80,22 @@ class Information extends React.Component {
            增加關鍵字 
           </button>
         </div>
-          <label>
-            {this.state.inputs.map((input, idx) => (
-            <div key={idx}>
-              <input 
-                type="text" 
-                onChange={this.handleQueryChange(idx)}
-              />
-            </div>
-            ))}
-          </label>
-          <div>
-            <button onClick={this.submit}>
-              Submit
-            </button>
-          </div>
+
+        {this.state.inputs.map((input, idx) => (
+        <div key={idx}>
+          <input 
+            type="text" 
+            onChange={this.handleQueryChange(idx)}
+            placeholder="Insert you keyword here"
+          />
+        </div>
+        ))}
+        {this.state. empty?  <div style={{color:"red", marginLeft:"20px"}}><FaHandPointerO/><b> Input Empty</b></div> : null}
+        <div>
+          <button onClick={this.submitQuery}>
+            Submit
+          </button>
+        </div>
         {this.state.search ? <ShowResults query={this.state.inputs}/> : null}
       </div>
     );

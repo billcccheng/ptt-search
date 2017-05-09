@@ -57,7 +57,7 @@ class ShowResults extends React.Component {
     return (
       <div>
         <h3>Results</h3>
-        {this.state.loading ?<Spinner spinnerName='wandering-cubes'/> : ""}
+        {this.state.loading ?<Spinner spinnerName='wave'/> : null}
         {this.state.dataToPrint.length > 1000 ? <Results show={false}/>: <Results show={true} contents={this.state.dataToPrint}/>}
       </div>
     );
