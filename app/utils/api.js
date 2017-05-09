@@ -1,9 +1,9 @@
 let axios = require('axios');
 
 module.exports = {
-  getPttData: (idx) => {
+  getPttData: (start, stop) => {
     let axiosArray = [];
-    for(let page = 0; page < 60; page++){
+    for(let page = start; page < stop; page++){
       let encodedURI = window.encodeURI("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/threading/data/data-"+ page +".json");
       axiosArray.push(axios.get(encodedURI))
     }
