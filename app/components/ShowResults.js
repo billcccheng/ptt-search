@@ -24,30 +24,29 @@ class ShowResults extends React.Component {
       loading: true
     });
 
-    api.getPttData()
-      .then((Obj) => {
-        for(let i = 0; i < Obj.length; i++) {
-          let res = Obj[i];
-          if(this.state.dataToPrint.length > 1000){
-            break;
+    api.getPttData().then((Obj) => {
+      for(let i = 0; i < Obj.length; i++) {
+        let res = Obj[i];
+        if(this.state.dataToPrint.length > 1000){
+          break;
+        }
+        res.data.forEach((element) => {
+          let data = Object.values(element).toString().toLowerCase();
+          let resArray = this.props.query;
+          let hit = true;
+          for(let i = 0; i < resArray.length; i++){
+            if(!data.includes(resArray[i].input.toLowerCase())){
+              hit = false;
+              break;
+            }
           }
-          res.data.forEach((element) => {
-            let data = Object.values(element).toString().toLowerCase();
-            let resArray = this.props.query;
-            let hit = true;
-            for(let i = 0; i < resArray.length; i++){
-              if(!data.includes(resArray[i].input.toLowerCase())){
-                hit = false;
-                break;
-              }
-            }
-            if(hit){
-              this.setState({
-                dataToPrint: this.state.dataToPrint.concat(element),
-              });
-            }
-         })
-       }
+          if(hit){
+            this.setState({
+              dataToPrint: this.state.dataToPrint.concat(element),
+            });
+          }
+        })
+      }
       this.setState({
         loading: false,
       })
