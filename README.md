@@ -10,7 +10,7 @@ git clone https://github.com/billcccheng/ptt-studyabroad-search.git
 ```
 
 Then npm install to install all the required packages. After you have
-all the packages installed, you can npm run start to play around with you app on `port 8080`.
+all the packages installed, you can `npm run start` to play around with you app on `port 8080`.
 
 ```
 npm install
