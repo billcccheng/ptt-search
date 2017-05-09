@@ -19942,6 +19942,16 @@ var ShowResults = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var numbers = void 0;
+      if (!this.state.loading) {
+        numbers = _react2.default.createElement(
+          'div',
+          null,
+          ' ',
+          this.state.dataToPrint.length,
+          ' results'
+        );
+      }
       return _react2.default.createElement(
         'div',
         null,
@@ -19950,7 +19960,7 @@ var ShowResults = function (_React$Component) {
           null,
           'Results'
         ),
-        this.state.loading ? _react2.default.createElement(_reactSpinkit2.default, { spinnerName: 'wandering-cubes' }) : null,
+        this.state.loading ? _react2.default.createElement(_reactSpinkit2.default, { spinnerName: 'wandering-cubes' }) : numbers,
         _react2.default.createElement(Results, { contents: this.state.dataToPrint })
       );
     }
