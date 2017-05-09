@@ -28,9 +28,6 @@ class ShowResults extends React.Component {
     api.getPttData().then((Obj) => {
       for(let i = 0; i < Obj.length; i++) {
         let res = Obj[i];
-        if(this.state.dataToPrint.length > 1000){
-          //break;
-        }
         res.data.forEach((element) => {
           let data = Object.values(element).toString().toLowerCase();
           let resArray = this.props.query;
