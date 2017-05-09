@@ -7,8 +7,8 @@ import Monster from 'react-icons/lib/fa/optin-monster';
 function App(props){
   return(
     <div>
-      <h1><Monster/> Welcome to PTT Studyabroad Search</h1> 
-      <h3>By Bill Cheng (billcccheng@gmail.com) Last Update: 12/12/2016</h3>
+      <h2><Monster/> Welcome to PTT Studyabroad Search</h2> 
+      <h4>By Bill Cheng (billcccheng@gmail.com) Last Update: 12/12/2016</h4>
       <h5>Updates:</h5>
       <ul>
           <li> Case Insensitive </li>
@@ -61,8 +61,10 @@ class Information extends React.Component {
         if (idx !== sidx) return input;
         return { input: event.target.value };
       });
-      this.setState({ inputs: newInputs });
-      this.setState({search:false});
+      this.setState({ 
+        inputs: newInputs,
+        search:false
+      });
     }
   }
 
@@ -83,7 +85,7 @@ class Information extends React.Component {
             <div key={idx}>
               <input 
                 type="text" 
-                onBlur={this.handleQueryChange(idx)}
+                onChange={this.handleQueryChange(idx)}
               />
             </div>
             ))}

@@ -14,10 +14,6 @@ class ShowResults extends React.Component {
     };
   }
 
-  componentWillReceiveProps() {
-    //this.getPttData();
-  }
-
   componentDidMount(){
     this.getPttData();
   }
