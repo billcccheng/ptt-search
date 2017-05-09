@@ -19922,19 +19922,12 @@ var ShowResults = function (_React$Component) {
       _api2.default.getPttData().then(function (Obj) {
         for (var i = 0; i < Obj.length; i++) {
           var res = Obj[i];
-          if (_this2.state.dataToPrint.length > 1000) {
-            //break;
-          }
           res.data.forEach(function (element) {
             var data = Object.values(element).toString().toLowerCase();
-            var resArray = _this2.props.query;
-            var hit = true;
-            for (var _i = 0; _i < resArray.length; _i++) {
-              if (!data.includes(resArray[_i].input.toLowerCase())) {
-                hit = false;
-                break;
-              }
-            }
+            var queryArray = _this2.props.query;
+            var hit = queryArray.every(function (query) {
+              return data.includes(query.input.toLowerCase());
+            });
             if (hit) {
               contentHits.push(element);
             }
