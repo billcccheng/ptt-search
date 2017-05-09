@@ -35,7 +35,7 @@ class ShowResults extends React.Component {
           if(hit){
             contentHits.push(element);
           }
-        })
+        });
       }
       this.setState({
         dataToPrint: contentHits,
@@ -45,15 +45,20 @@ class ShowResults extends React.Component {
   }
 
   render() {
+    let numbers;
+    if(!this.state.loading){
+      numbers = <div> {this.state.dataToPrint.length} results</div>;
+    }
     return (
       <div>
         <h3>Results</h3>
-        {this.state.loading ?<Spinner spinnerName='wandering-cubes'/> : null}
+        {this.state.loading ? <Spinner spinnerName='wandering-cubes'/> : numbers}
         <Results contents={this.state.dataToPrint}/>
       </div>
     );
   }
 }
+
 class Results extends React.Component {
   constructor(props) {
     super();
@@ -76,6 +81,5 @@ class Results extends React.Component {
     );
   }
 }
-
 
 module.exports = ShowResults;
