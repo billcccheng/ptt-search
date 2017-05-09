@@ -19707,11 +19707,6 @@ function App(props) {
         'li',
         null,
         '\u641C\u5C0B\u53EF\u80FD\u8017\u6642\u8F03\u4E45 \u8ACB\u8010\u5FC3\u7B49\u5019'
-      ),
-      _react2.default.createElement(
-        'li',
-        null,
-        '\u8ACB\u7528\u7279\u5B9A\u95DC\u9375\u5B57 \u8D85\u904E1000\u7B46\u5C07\u4E0D\u6703\u986F\u793A'
       )
     ),
     _react2.default.createElement(Information, null)
@@ -19923,11 +19918,12 @@ var ShowResults = function (_React$Component) {
         loading: true
       });
 
+      var contentHits = [];
       _api2.default.getPttData().then(function (Obj) {
         for (var i = 0; i < Obj.length; i++) {
           var res = Obj[i];
           if (_this2.state.dataToPrint.length > 1000) {
-            break;
+            //break;
           }
           res.data.forEach(function (element) {
             var data = Object.values(element).toString().toLowerCase();
@@ -19940,13 +19936,12 @@ var ShowResults = function (_React$Component) {
               }
             }
             if (hit) {
-              _this2.setState({
-                dataToPrint: _this2.state.dataToPrint.concat(element)
-              });
+              contentHits.push(element);
             }
           });
         }
         _this2.setState({
+          dataToPrint: contentHits,
           loading: false
         });
       });
@@ -19963,7 +19958,7 @@ var ShowResults = function (_React$Component) {
           'Results'
         ),
         this.state.loading ? _react2.default.createElement(_reactSpinkit2.default, { spinnerName: 'wandering-cubes' }) : null,
-        this.state.dataToPrint.length > 1000 ? _react2.default.createElement(Results, { show: false }) : _react2.default.createElement(Results, { show: true, contents: this.state.dataToPrint })
+        _react2.default.createElement(Results, { contents: this.state.dataToPrint })
       );
     }
   }]);
@@ -19989,12 +19984,7 @@ var Results = function (_React$Component2) {
         _react2.default.createElement(
           'ol',
           null,
-          !this.props.show ? _react2.default.createElement(
-            'div',
-            null,
-            'Too Many Results. Please narrow down your search. ',
-            _react2.default.createElement(_frownO2.default, null)
-          ) : this.props.contents.map(function (element, idx) {
+          this.props.contents.map(function (element, idx) {
             return _react2.default.createElement(
               'li',
               { key: idx },
@@ -20050,7 +20040,7 @@ _reactDom2.default.render(_react2.default.createElement(_App2.default, null), do
 var axios = __webpack_require__(130);
 
 module.exports = {
-  getPttData: function getPttData(idx) {
+  getPttData: function getPttData() {
     var axiosArray = [];
     for (var page = 0; page < 60; page++) {
       var encodedURI = window.encodeURI("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/threading/data/data-" + page + ".json");
