@@ -3,3 +3,18 @@ body {
   background-image:url("http://www.designbolts.com/wp-content/uploads/2013/02/Free-Seamless-Wood-Textures-Patterns-For-3D-Mapping-2.jpg");
   padding:50px;
 }
+
+#query-box {
+  margin-bottom:10px;
+}
+
+button {
+  color:#050; 
+  background-color:#fed; 
+  border:1px solid; 
+  margin:5px;
+}
+
+input {
+  margin:5px;
+}
