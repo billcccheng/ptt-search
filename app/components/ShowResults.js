@@ -30,14 +30,8 @@ class ShowResults extends React.Component {
         let res = Obj[i];
         res.data.forEach((element) => {
           let data = Object.values(element).toString().toLowerCase();
-          let resArray = this.props.query;
-          let hit = true;
-          for(let i = 0; i < resArray.length; i++){
-            if(!data.includes(resArray[i].input.toLowerCase())){
-              hit = false;
-              break;
-            }
-          }
+          let queryArray = this.props.query;
+          let hit = queryArray.every((query) => data.includes(query.input.toLowerCase()));
           if(hit){
             contentHits.push(element);
           }
