@@ -8,7 +8,7 @@ function App(props){
   return(
     <div>
       <h1><Monster/> Welcome to PTT Studyabroad Search</h1> 
-      <h3>By Bill Cheng(billcccheng@gmail.com) Last Update: 12/12/2016</h3>
+      <h3>By Bill Cheng (billcccheng@gmail.com) Last Update: 12/12/2016</h3>
       <h5>Updates:</h5>
       <ul>
           <li> Case Insensitive </li>
@@ -17,7 +17,12 @@ function App(props){
           <li> Updates will be done every 6 months </li>
           <li> Will search for 標題 and 內文 simultaneously </li>
       </ul>
-      <h5>搜尋可能耗時較久 請耐心等候</h5>
+
+      提醒:
+      <ul>
+        <li>搜尋可能耗時較久 請耐心等候</li>
+        <li>請用特定關鍵字 超過1000筆將不會顯示</li>
+      </ul>
       <Information/>
     </div>
   );
@@ -37,8 +42,9 @@ class Information extends React.Component {
   submit(event){
     let openSearch = true;
     this.state.inputs.map(Obj => {
-      if(Obj.input === "")
+      if(Obj.input === ""){
         openSearch = false;
+      }
     });
 
     openSearch ? this.setState({search: true}) : this.setState({search: false});
@@ -56,6 +62,7 @@ class Information extends React.Component {
         return { input: event.target.value };
       });
       this.setState({ inputs: newInputs });
+      this.setState({search:false});
     }
   }
 
@@ -66,9 +73,11 @@ class Information extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.appendInput}>
-         增加關鍵字 
-        </button>
+        <div>
+          <button onClick={this.appendInput}>
+           增加關鍵字 
+          </button>
+        </div>
           <label>
             {this.state.inputs.map((input, idx) => (
             <div key={idx}>
@@ -79,10 +88,12 @@ class Information extends React.Component {
             </div>
             ))}
           </label>
-        <button onClick={this.submit}>
-          Submit
-        </button>
-        {!this.state.search? null : <ShowResults query={this.state.inputs}/>}
+          <div>
+            <button onClick={this.submit}>
+              Submit
+            </button>
+          </div>
+        {this.state.search ? <ShowResults query={this.state.inputs}/> : null}
       </div>
     );
   }

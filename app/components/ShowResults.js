@@ -14,8 +14,8 @@ class ShowResults extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.getPttData();
+  componentWillReceiveProps() {
+    //this.getPttData();
   }
 
   componentDidMount(){
@@ -52,9 +52,9 @@ class ShowResults extends React.Component {
             }
          })
        }
-        this.setState({
-          loading: false,
-        })
+      this.setState({
+        loading: false,
+      })
     });
   }
 
@@ -62,7 +62,7 @@ class ShowResults extends React.Component {
     return (
       <div>
         <h3>Results</h3>
-        {this.state.loading ?<Spinner spinnerName='double-bounce'/> : ""}
+        {this.state.loading ?<Spinner spinnerName='wandering-cubes'/> : ""}
         {this.state.dataToPrint.length > 1000 ? <Results show={false}/>: <Results show={true} contents={this.state.dataToPrint}/>}
       </div>
     );
@@ -78,13 +78,15 @@ class Results extends React.Component {
       <div>
         <ol>
         {!this.props.show ? 
-         <div>Too Many Results. Please narrow down your search.<Frown/></div>: this.props.contents.map((element, idx) => {
-          return(
-          <li key={idx}> 
-            <a href={element.link}>{element["標題"].substring(0,50)}</a>
-          </li>
-          );
-        })}
+        <div>Too Many Results. Please narrow down your search. <Frown/></div>: 
+          this.props.contents.map((element, idx)=>{
+            return(
+            <li key={idx}> 
+              <a href={element.link}>{element["標題"].substring(0,50)}</a>
+            </li>
+            );
+          })
+        }
         </ol>
       </div>
     );
