@@ -24,33 +24,33 @@ class ShowResults extends React.Component {
       loading: true
     });
 
-    for(let start = 0; start < 60; start+=10){
-      api.getPttData(start, start+10).then((Obj) => {
-        for(let i = 0; i < Obj.length; i++) {
-          let res = Obj[i];
-          if(this.state.dataToPrint.length > 1000){
-            break;
-          }
-          res.data.forEach((element) => {
-            let data = Object.values(element).toString().toLowerCase();
-            let resArray = this.props.query;
-            let hit = true;
-            for(let i = 0; i < resArray.length; i++){
-              if(!data.includes(resArray[i].input.toLowerCase())){
-                hit = false;
-                break;
-              }
-            }
-            if(hit){
-              this.setState({
-                dataToPrint: this.state.dataToPrint.concat(element),
-                loading:false
-              });
-            }
-          })
+    let contentHits = [];
+    api.getPttData().then((Obj) => {
+      for(let i = 0; i < Obj.length; i++) {
+        let res = Obj[i];
+        if(this.state.dataToPrint.length > 1000){
+          //break;
         }
+        res.data.forEach((element) => {
+          let data = Object.values(element).toString().toLowerCase();
+          let resArray = this.props.query;
+          let hit = true;
+          for(let i = 0; i < resArray.length; i++){
+            if(!data.includes(resArray[i].input.toLowerCase())){
+              hit = false;
+              break;
+            }
+          }
+          if(hit){
+            contentHits.push(element);
+          }
+        })
+      }
+      this.setState({
+        dataToPrint: contentHits,
+        loading:false
       });
-    }
+    });
   }
 
   render() {
@@ -58,7 +58,7 @@ class ShowResults extends React.Component {
       <div>
         <h3>Results</h3>
         {this.state.loading ?<Spinner spinnerName='wandering-cubes'/> : null}
-        {this.state.dataToPrint.length > 1000 ? <Results show={false}/>: <Results show={true} contents={this.state.dataToPrint}/>}
+        <Results contents={this.state.dataToPrint}/>
       </div>
     );
   }
@@ -72,16 +72,14 @@ class Results extends React.Component {
     return (
       <div>
         <ol>
-        {!this.props.show ? 
-        <div>Too Many Results. Please narrow down your search. <Frown/></div>: 
-          this.props.contents.map((element, idx)=>{
-            return(
-            <li key={idx}> 
-              <a href={element.link}>{element["標題"].substring(0,50)}</a>
-            </li>
-            );
-          })
-        }
+          {this.props.contents.map((element, idx)=>{
+              return(
+                <li key={idx}> 
+                  <a href={element.link}>{element["標題"].substring(0,50)}</a>
+                </li>
+              );
+            })
+          }
         </ol>
       </div>
     );

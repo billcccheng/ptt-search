@@ -22,7 +22,6 @@ function App(props){
       提醒:
       <ul>
         <li>搜尋可能耗時較久 請耐心等候</li>
-        <li>請用特定關鍵字 超過1000筆將不會顯示</li>
       </ul>
       <Information/>
     </div>
