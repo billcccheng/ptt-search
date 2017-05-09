@@ -1,10 +1,12 @@
 {
-  "name": "ptt-query",
+  "name": "ptt-studyabroad-search",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": " webpack-dev-server --hot --open --host 0.0.0.0"
+    "start": "webpack-dev-server --hot --open --host 0.0.0.0",
+    "build": "webpack",
+    "deploy" : "npm run build&&gh-pages -d dist"
   },
   "babel": {
     "presets": [
@@ -36,6 +38,8 @@
     "html-webpack-plugin": "^2.28.0",
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.4"
-  }
+    "webpack-dev-server": "^2.4.4",
+    "react-scripts": "0.9.5"
+  },
+  "homepage": "https://billcccheng.github.io/ptt-studyabroad-search"
 }

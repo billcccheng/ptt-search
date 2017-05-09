@@ -3,10 +3,6 @@ let HtmlWebPackPlugin = require('html-webpack-plugin');
 
 let configs = {
     entry: './app/index.js',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename:'index_bundle.js'
-    },
     module: {
         rules: [
             { test: /\.(js)$/, use: 'babel-loader' },
@@ -15,7 +11,11 @@ let configs = {
     },
     plugins: [new HtmlWebPackPlugin({
         template: 'app/index.html'
-    })]
+    })],
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename:'index_bundle.js'
+    },
 }
 
 module.exports = configs;

@@ -79,6 +79,9 @@ class Information extends React.Component {
           <button onClick={this.appendInput}>
            增加關鍵字 
           </button>
+          <button onClick={this.submitQuery}>
+            Submit
+          </button>
         </div>
 
         {this.state.inputs.map((input, idx) => (
@@ -91,11 +94,6 @@ class Information extends React.Component {
         </div>
         ))}
         {this.state. empty?  <div style={{color:"red", marginLeft:"20px"}}><FaHandPointerO/><b> Input Empty</b></div> : null}
-        <div>
-          <button onClick={this.submitQuery}>
-            Submit
-          </button>
-        </div>
         {this.state.search ? <ShowResults query={this.state.inputs}/> : null}
       </div>
     );
