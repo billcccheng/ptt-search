@@ -22,7 +22,7 @@ If you want to change your port to 8000, just go to `package.json` and change `"
 "start": "PORT=8000 webpack-dev-server --hot --open --host 0.0.0.0"
 ```
 
-## Changelogs
+## Change Logs
 12.05.2016
 * Case Insensitive 
 * Boolean Search 
