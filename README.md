@@ -22,6 +22,18 @@ If you want to change your port to 8000, just go to `package.json` and change `"
 "start": "PORT=8000 webpack-dev-server --hot --open --host 0.0.0.0"
 ```
 
+## Changelogs
+12.05.2016
+* Case Insensitive 
+* Boolean Search 
+* Can track all documents in study abroad as of 05/09/2017 
+* Updates will be done every 6 months 
+* Will search for 標題 and 內文 simultaneously 
+
+5.08.2017
+* Major revision: Changed to whole code base to react
+* Add/Delete Query
+
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
