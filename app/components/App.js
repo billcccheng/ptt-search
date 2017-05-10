@@ -9,19 +9,19 @@ function App(props){
   return(
     <div>
       <h2><Monster/> Welcome to PTT Studyabroad Search</h2> 
-      <h4>By Bill Cheng (billcccheng@gmail.com) Last Update: 05/19/2017</h4>
+      <h4>By Bill Cheng (billcccheng@gmail.com) Last Update: 05/09/2017</h4>
       <h5>Updates:</h5>
       <ul>
           <li> Case Insensitive </li>
           <li> Boolean Search </li>
-          <li> Can track all documents in study abroad as of 12/5/2016 </li>
+          <li> Can track all documents in study abroad as of 05/09/2017 </li>
           <li> Updates will be done every 6 months </li>
           <li> Will search for 標題 and 內文 simultaneously </li>
       </ul>
 
       提醒:
       <ul>
-        <li>搜尋可能耗時較久 請耐心等候</li>
+        <li>搜尋第一次可能耗時較久 請耐心等候</li>
       </ul>
       <Information/>
     </div>
@@ -88,7 +88,7 @@ class Information extends React.Component {
           <input 
             type="text" 
             onChange={this.handleQueryChange(idx)}
-            placeholder="Insert you keyword here"
+            placeholder="Insert keyword here"
           />
         </div>
         ))}
