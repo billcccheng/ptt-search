@@ -21660,7 +21660,6 @@ var ShowResults = function (_React$Component) {
       _api2.default.getPttData().then(function (Obj) {
         for (var i = 0; i < Obj.length; i++) {
           var res = Obj[i];
-          console.log(res);
           res.data.forEach(function (element) {
             var data = Object.values(element).toString().toLowerCase();
             var queryArray = _this2.props.query;
