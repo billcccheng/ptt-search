@@ -9,7 +9,7 @@ function App(props){
   return(
     <div>
       <h2><Monster/> Welcome to PTT Studyabroad Search</h2> 
-      <h4>By Bill Cheng (billcccheng@gmail.com) Last Update: 12/12/2016</h4>
+      <h4>By Bill Cheng (billcccheng@gmail.com) Last Update: 05/19/2017</h4>
       <h5>Updates:</h5>
       <ul>
           <li> Case Insensitive </li>
