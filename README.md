@@ -34,6 +34,9 @@ If you want to change your port to 8000, just go to `package.json` and change `"
 * Major revision: Changed to whole code base to react
 * Add/Delete Query
 
+5.10.2017
+* Group results by year
+
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
