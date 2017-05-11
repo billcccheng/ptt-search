@@ -109,14 +109,14 @@ class SubResults extends React.Component {
   render() {
     return(
       <ol>
-        { this.props.results.map((result) => 
-            (
-              <li key={result.link}>
-                <a href={result.link}>{result.標題.substring(0,50)}</a> 
-              </li>
-            )
-          ) 
-        }
+      { this.props.results.map((result) => 
+          (
+            <li key={result.link}>
+              <a href={result.link}>{result.標題.substring(0,50)}</a> 
+            </li>
+          )
+        ) 
+      }
       </ol>
     )
   }
