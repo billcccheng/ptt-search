@@ -68,7 +68,7 @@ class ShowResults extends React.Component {
     }
     return (
       <div>
-        <h3>Results</h3>
+        <h2>Results</h2>
         {this.state.loading ? <Spinner spinnerName='wandering-cubes'/> : numbers}
         {this.state.dataToPrintYear.length != 0 ? <Results contentsYear={this.state.dataToPrintYear} contents={this.state.dataToPrint}/>: null
         }   
@@ -111,7 +111,7 @@ class SubResults extends React.Component {
         { this.props.results.map((result) => {
             return (
               <li key={result.link}>
-                <a href={result.link}>{result.標題}</a> 
+                <a href={result.link}>{result.標題.substring(0,50)}</a> 
               </li>
             )
           }) 
