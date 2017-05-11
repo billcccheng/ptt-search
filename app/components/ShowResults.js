@@ -86,14 +86,14 @@ class Results extends React.Component {
     let sortedYears = Object.keys(this.props.contentsYear).reverse();
     return (
         <div>
-          { sortedYears.map(year => {
-              return(
+          { sortedYears.map(year =>
+              (
               <div key={year}>
                 <h3>{year}</h3>
                 <SubResults results={this.props.contentsYear[year]}/>
               </div>
               )
-            })
+            )
           }
         </div>
     );
@@ -108,13 +108,13 @@ class SubResults extends React.Component {
   render() {
     return(
       <ol>
-        { this.props.results.map((result) => {
-            return (
+        { this.props.results.map((result) => 
+            (
               <li key={result.link}>
                 <a href={result.link}>{result.標題.substring(0,50)}</a> 
               </li>
             )
-          }) 
+          ) 
         }
       </ol>
     )
