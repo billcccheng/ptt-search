@@ -31,7 +31,7 @@ If you want to change your port to 8000, just go to `package.json` and change `"
 * Will search for 標題 and 內文 simultaneously 
 
 5.08.2017
-* Major revision: Changed to whole code base to react
+* Major revision: Changed whole code base to react
 * Add/Delete Query
 
 5.10.2017
