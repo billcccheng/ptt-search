@@ -10,8 +10,7 @@ class ShowResults extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      dataToPrint: [],
-      dataToPrintYear: [],
+      dataToDisplay: [],
     };
   }
 
@@ -28,50 +27,52 @@ class ShowResults extends React.Component {
 
   getPttData(){
     this.setState({
-      dataToPrint: [],
+      dataToDisplay: {},
       loading: true
     });
 
-    let contentHits = [];
-    let contentObj = {}
+    let contentHitObject = {}
     let seenData = new Set();
     api.getPttData().then((Obj) => {
       for(let i = 0; i < Obj.length; i++) {
         let res = Obj[i];
-        res.data.forEach((element) => {
-          let data = Object.values(element).toString().toLowerCase();
+        res.data.forEach((datam) => {
+          let data = Object.values(datam).toString().toLowerCase();
           let queryArray = this.props.query;
           let hit = queryArray.every((query) => data.includes(query.input.toLowerCase()));
-          if(hit && !this.isDuplicate(seenData, element)){
-            contentHits.push(element);
-            let date = element.日期.split(" ");
+          if(hit && !this.isDuplicate(seenData, datam)){
+            let date = datam.日期.split(" ");
             let year = date[date.length-1]; 
-            if(!(year in contentObj)){
-              contentObj[year] = [];
+            if(/^\d+$/.test(year)){
+              if(!(year in contentHitObject)){
+                contentHitObject[year] = [];
+              }
+              contentHitObject[year].push(datam);
             }
-            contentObj[year].push(element);
           }
         });
       }
       this.setState({
-        dataToPrint: contentHits,
-        dataToPrintYear: contentObj,
+        dataToDisplay: contentHitObject,
         loading:false
       });
     });
   }
 
   render() {
-    let numbers;
+    let numberOfData = 0;
     if(!this.state.loading){
-      numbers = <div> {this.state.dataToPrint.length} results</div>;
+      let dataObj = this.state.dataToDisplay;
+      Object.keys(dataObj).map(key => {
+        numberOfData += dataObj[key].length;
+      });
+      numberOfData = <div>{numberOfData} results</div>;
     }
     return (
       <div>
         <h2>Results</h2>
-        {this.state.loading ? <Spinner spinnerName='wandering-cubes'/> : numbers}
-        {this.state.dataToPrintYear.length != 0 ? <Results contentsYear={this.state.dataToPrintYear} contents={this.state.dataToPrint}/>: null
-        }   
+        {this.state.loading ? <Spinner spinnerName='wandering-cubes'/> : numberOfData}
+        {this.state.dataToDisplay.length != 0 ? <Results contents={this.state.dataToDisplay}/>: null}   
       </div>
     );
   }
@@ -83,14 +84,14 @@ class Results extends React.Component {
   }
 
   render() {
-    let sortedYears = Object.keys(this.props.contentsYear).reverse();
+    let sortedYears = Object.keys(this.props.contents).reverse();
     return (
         <div>
           { sortedYears.map(year =>
               (
               <div key={year}>
                 <h3>{year}</h3>
-                <SubResults results={this.props.contentsYear[year]}/>
+                <SubResults results={this.props.contents[year]}/>
               </div>
               )
             )

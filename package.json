@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot",
+    "start": "webpack-dev-server --hot --host 0.0.0.0",
     "build": "webpack",
     "deploy": "npm run build&&gh-pages -d dist"
   },
