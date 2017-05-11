@@ -10,17 +10,8 @@ function App(props){
     <div>
       <h2><Monster/> Welcome to PTT Studyabroad Search</h2> 
       <h4>By Bill Cheng (billcccheng@gmail.com) Last Update: 05/09/2017</h4>
-      <h5>Updates:</h5>
       <ul>
-          <li> Case Insensitive </li>
-          <li> Boolean Search </li>
-          <li> Can track all documents in study abroad as of 05/09/2017 </li>
-          <li> Updates will be done every 6 months </li>
-          <li> Will search for 標題 and 內文 simultaneously </li>
-      </ul>
-
-      提醒:
-      <ul>
+        <li>  Updates description can be found <a href= "https://github.com/billcccheng/ptt-studyabroad-search/blob/master/README.md#change-logs">here</a></li>
         <li>搜尋第一次可能耗時較久 請耐心等候</li>
       </ul>
       <Information/>
@@ -63,12 +54,18 @@ class Information extends React.Component {
       });
       this.setState({ 
         inputs: newInputs,
-        search:false
+        search: false
       });
     }
   }
 
   handleRemoveQuery(idx){
+    return () => {
+      this.setState({ 
+        inputs: this.state.inputs.filter((s, sidx) => idx !== sidx),
+        search: false
+      });
+    }
   }
 
   render() {
@@ -84,13 +81,14 @@ class Information extends React.Component {
         </div>
 
         {this.state.inputs.map((input, idx) => (
-        <div key={idx}>
-          <input 
-            type="text" 
-            onChange={this.handleQueryChange(idx)}
-            placeholder="Insert keyword here"
-          />
-        </div>
+          <div key={idx}>
+            <input 
+              type="text" 
+              onChange={this.handleQueryChange(idx)}
+              placeholder="Insert keyword here"
+            />
+          <button type="button" onClick={this.handleRemoveQuery(idx)} className="small">-</button>
+          </div>
         ))}
         {this.state. empty?  <div style={{color:"red", marginLeft:"20px"}}><FaHandPointerO/><b> Input Empty</b></div> : null}
         {this.state.search ? <ShowResults query={this.state.inputs}/> : null}

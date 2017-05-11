@@ -11,11 +11,19 @@ class ShowResults extends React.Component {
     super();
     this.state = {
       dataToPrint: [],
+      dataToPrintYear: [],
     };
   }
 
   componentDidMount(){
     this.getPttData();
+  }
+
+  isDuplicate(seenData, data){
+    if(seenData.has(data.link))
+      return true;
+    seenData.add(data.link);
+    return false;
   }
 
   getPttData(){
@@ -25,6 +33,8 @@ class ShowResults extends React.Component {
     });
 
     let contentHits = [];
+    let contentObj = {}
+    let seenData = new Set();
     api.getPttData().then((Obj) => {
       for(let i = 0; i < Obj.length; i++) {
         let res = Obj[i];
@@ -32,13 +42,20 @@ class ShowResults extends React.Component {
           let data = Object.values(element).toString().toLowerCase();
           let queryArray = this.props.query;
           let hit = queryArray.every((query) => data.includes(query.input.toLowerCase()));
-          if(hit){
+          if(hit && !this.isDuplicate(seenData, element)){
             contentHits.push(element);
+            let date = element.日期.split(" ");
+            let year = date[date.length-1]; 
+            if(!(year in contentObj)){
+              contentObj[year] = [];
+            }
+            contentObj[year].push(element);
           }
         });
       }
       this.setState({
         dataToPrint: contentHits,
+        dataToPrintYear: contentObj,
         loading:false
       });
     });
@@ -53,7 +70,8 @@ class ShowResults extends React.Component {
       <div>
         <h3>Results</h3>
         {this.state.loading ? <Spinner spinnerName='wandering-cubes'/> : numbers}
-        <Results contents={this.state.dataToPrint}/>
+        {this.state.dataToPrintYear.length != 0 ? <Results contentsYear={this.state.dataToPrintYear} contents={this.state.dataToPrint}/>: null
+        }   
       </div>
     );
   }
@@ -65,20 +83,41 @@ class Results extends React.Component {
   }
 
   render() {
+    let sortedYears = Object.keys(this.props.contentsYear).reverse();
     return (
-      <div>
-        <ol>
-          {this.props.contents.map((element, idx)=>{
+        <div>
+          { sortedYears.map(year => {
               return(
-                <li key={idx}> 
-                  <a href={element.link}>{element["標題"].substring(0,50)}</a>
-                </li>
-              );
+              <div key={year}>
+                <h3>{year}</h3>
+                <SubResults results={this.props.contentsYear[year]}/>
+              </div>
+              )
             })
           }
-        </ol>
-      </div>
+        </div>
     );
+  }
+}
+
+class SubResults extends React.Component {
+  constructor(props) {
+    super();
+  }
+
+  render() {
+    return(
+      <ol>
+        { this.props.results.map((result) => {
+            return (
+              <li key={result.link}>
+                <a href={result.link}>{result.標題}</a> 
+              </li>
+            )
+          }) 
+        }
+      </ol>
+    )
   }
 }
 
