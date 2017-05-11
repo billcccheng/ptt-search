@@ -21404,43 +21404,18 @@ function App(props) {
       'By Bill Cheng (billcccheng@gmail.com) Last Update: 05/09/2017'
     ),
     _react2.default.createElement(
-      'h5',
-      null,
-      'Updates:'
-    ),
-    _react2.default.createElement(
       'ul',
       null,
       _react2.default.createElement(
         'li',
         null,
-        ' Case Insensitive '
+        '  Updates description can be found ',
+        _react2.default.createElement(
+          'a',
+          { href: 'https://github.com/billcccheng/ptt-studyabroad-search/blob/master/README.md#change-logs' },
+          'here'
+        )
       ),
-      _react2.default.createElement(
-        'li',
-        null,
-        ' Boolean Search '
-      ),
-      _react2.default.createElement(
-        'li',
-        null,
-        ' Can track all documents in study abroad as of 05/09/2017 '
-      ),
-      _react2.default.createElement(
-        'li',
-        null,
-        ' Updates will be done every 6 months '
-      ),
-      _react2.default.createElement(
-        'li',
-        null,
-        ' Will search for \u6A19\u984C and \u5167\u6587 simultaneously '
-      )
-    ),
-    '\u63D0\u9192:',
-    _react2.default.createElement(
-      'ul',
-      null,
       _react2.default.createElement(
         'li',
         null,
@@ -21504,11 +21479,22 @@ var Information = function (_React$Component) {
     }
   }, {
     key: 'handleRemoveQuery',
-    value: function handleRemoveQuery(idx) {}
+    value: function handleRemoveQuery(idx) {
+      var _this3 = this;
+
+      return function () {
+        _this3.setState({
+          inputs: _this3.state.inputs.filter(function (s, sidx) {
+            return idx !== sidx;
+          }),
+          search: false
+        });
+      };
+    }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
@@ -21533,9 +21519,14 @@ var Information = function (_React$Component) {
             { key: idx },
             _react2.default.createElement('input', {
               type: 'text',
-              onChange: _this3.handleQueryChange(idx),
+              onChange: _this4.handleQueryChange(idx),
               placeholder: 'Insert keyword here'
-            })
+            }),
+            _react2.default.createElement(
+              'button',
+              { type: 'button', onClick: _this4.handleRemoveQuery(idx), className: 'small' },
+              '-'
+            )
           );
         }),
         this.state.empty ? _react2.default.createElement(
@@ -21636,7 +21627,8 @@ var ShowResults = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (ShowResults.__proto__ || Object.getPrototypeOf(ShowResults)).call(this));
 
     _this.state = {
-      dataToPrint: []
+      dataToPrint: [],
+      dataToPrintYear: []
     };
     return _this;
   }
@@ -21645,6 +21637,13 @@ var ShowResults = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.getPttData();
+    }
+  }, {
+    key: 'isDuplicate',
+    value: function isDuplicate(seenData, data) {
+      if (seenData.has(data.link)) return true;
+      seenData.add(data.link);
+      return false;
     }
   }, {
     key: 'getPttData',
@@ -21657,6 +21656,8 @@ var ShowResults = function (_React$Component) {
       });
 
       var contentHits = [];
+      var contentObj = {};
+      var seenData = new Set();
       _api2.default.getPttData().then(function (Obj) {
         for (var i = 0; i < Obj.length; i++) {
           var res = Obj[i];
@@ -21666,13 +21667,20 @@ var ShowResults = function (_React$Component) {
             var hit = queryArray.every(function (query) {
               return data.includes(query.input.toLowerCase());
             });
-            if (hit) {
+            if (hit && !_this2.isDuplicate(seenData, element)) {
               contentHits.push(element);
+              var date = element.日期.split(" ");
+              var year = date[date.length - 1];
+              if (!(year in contentObj)) {
+                contentObj[year] = [];
+              }
+              contentObj[year].push(element);
             }
           });
         }
         _this2.setState({
           dataToPrint: contentHits,
+          dataToPrintYear: contentObj,
           loading: false
         });
       });
@@ -21694,12 +21702,12 @@ var ShowResults = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
-          'h3',
+          'h2',
           null,
           'Results'
         ),
         this.state.loading ? _react2.default.createElement(_reactSpinkit2.default, { spinnerName: 'wandering-cubes' }) : numbers,
-        _react2.default.createElement(Results, { contents: this.state.dataToPrint })
+        this.state.dataToPrintYear.length != 0 ? _react2.default.createElement(Results, { contentsYear: this.state.dataToPrintYear, contents: this.state.dataToPrint }) : null
       );
     }
   }]);
@@ -21719,29 +21727,62 @@ var Results = function (_React$Component2) {
   _createClass(Results, [{
     key: 'render',
     value: function render() {
+      var _this4 = this;
+
+      var sortedYears = Object.keys(this.props.contentsYear).reverse();
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'ol',
-          null,
-          this.props.contents.map(function (element, idx) {
-            return _react2.default.createElement(
-              'li',
-              { key: idx },
-              _react2.default.createElement(
-                'a',
-                { href: element.link },
-                element["標題"].substring(0, 50)
-              )
-            );
-          })
-        )
+        sortedYears.map(function (year) {
+          return _react2.default.createElement(
+            'div',
+            { key: year },
+            _react2.default.createElement(
+              'h3',
+              null,
+              year
+            ),
+            _react2.default.createElement(SubResults, { results: _this4.props.contentsYear[year] })
+          );
+        })
       );
     }
   }]);
 
   return Results;
+}(_react2.default.Component);
+
+var SubResults = function (_React$Component3) {
+  _inherits(SubResults, _React$Component3);
+
+  function SubResults(props) {
+    _classCallCheck(this, SubResults);
+
+    return _possibleConstructorReturn(this, (SubResults.__proto__ || Object.getPrototypeOf(SubResults)).call(this));
+  }
+
+  _createClass(SubResults, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'ol',
+        null,
+        this.props.results.map(function (result) {
+          return _react2.default.createElement(
+            'li',
+            { key: result.link },
+            _react2.default.createElement(
+              'a',
+              { href: result.link },
+              result.標題.substring(0, 50)
+            )
+          );
+        })
+      );
+    }
+  }]);
+
+  return SubResults;
 }(_react2.default.Component);
 
 module.exports = ShowResults;
