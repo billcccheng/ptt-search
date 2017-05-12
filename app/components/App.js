@@ -7,7 +7,7 @@ import FaHandPointerO from 'react-icons/lib/fa/hand-pointer-o';
 function App(props){
   return(
     <div id="query-section">
-      <h2 id="welcome-title">Welcome to PTT Studyabroad Search</h2> 
+      <h2 id="welcome-title">Welcome to PTT Search</h2> 
       <h4>By Bill Cheng (billcccheng@gmail.com) Last Update: 05/09/2017</h4>
       <ul>
         <li>  Updates description can be found <a href= "https://github.com/billcccheng/ptt-studyabroad-search/blob/master/README.md#change-logs">here</a></li>
