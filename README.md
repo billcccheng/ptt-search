@@ -1,4 +1,4 @@
-# PTT Study Abroad Search
+# PTT Search
 This is a web based search engine for PTT boards of the biggest BBS site, 
 [PTT](https://en.wikipedia.org/wiki/PTT_Bulletin_Board_System), in Taiwan and 
 is build in [react](https://facebook.github.io/react-native/). The website is deployed [here](https://billcccheng.github.io/ptt-search/).
