@@ -1,12 +1,12 @@
 # PTT Study Abroad Search
-This is a web based search engine for the Studyabroad board of the biggest BBS site, 
+This is a web based search engine for PTT boards of the biggest BBS site, 
 [PTT](https://en.wikipedia.org/wiki/PTT_Bulletin_Board_System), in Taiwan and 
-is build in [react](https://facebook.github.io/react-native/). The website is deployed [here](https://billcccheng.github.io/ptt-studyabroad-search/).
+is build in [react](https://facebook.github.io/react-native/). The website is deployed [here](https://billcccheng.github.io/ptt-search/).
 
 ## Installation
 First clone the repository.
 ```
-git clone https://github.com/billcccheng/ptt-studyabroad-search.git
+git clone https://github.com/billcccheng/ptt-search.git
 ```
 
 Then npm install to install all the required packages. After you have
@@ -36,6 +36,10 @@ If you want to change your port to 8000, just go to `package.json` and change `"
 
 5.10.2017
 * Group results by year
+
+## Future Update
+* Will add different boards
+* Will have TOEFL GRE analysis for studyabroad board
 
 ## Contributing
 1. Fork it!
