@@ -84,7 +84,7 @@ class SubResults extends React.Component {
       { this.props.results.map((result) => 
           (
             <li key={result.link}>
-              <a href={result.link}>{result.title.substring(0,50)}</a> 
+              <a target="_blank" href={result.link}>{result.title.substring(0,50)}</a> 
             </li>
           )
         ) 
