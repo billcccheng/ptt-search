@@ -63,5 +63,6 @@ Thanks to
 * [JedWatson](https://github.com/JedWatson/react-select) for react dropdown/select library.
 
 ## License
-MIT License
-Copyright (c) [2017] [Bill(Chun-Chan) Cheng]
+[MIT license](http://opensource.org/licenses/MIT).
+
+© 2017 Bill (Chun-Chan) Cheng
