@@ -21439,7 +21439,7 @@ var SubResults = function (_React$Component3) {
             { key: result.link },
             _react2.default.createElement(
               'a',
-              { href: result.link },
+              { target: '_blank', href: result.link },
               result.title.substring(0, 50)
             )
           );
