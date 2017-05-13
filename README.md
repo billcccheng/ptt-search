@@ -37,10 +37,12 @@ If you want to change your port to 8000, just go to `package.json` and change `"
 5.10.2017
 * Group results by year
 
+5.13.2017
+* Stand up a server to process all the searching to minimize memory usage
+
 ## Future Update
 * Will add different boards
 * Will have TOEFL GRE analysis for studyabroad board
-* Stand up a server to process all the searching to minimize memory usage
 
 ## Contributing
 1. Fork it!
