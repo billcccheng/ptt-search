@@ -1,14 +1,9 @@
 let axios = require('axios');
 
 module.exports = {
-  getPttData: () => {
-    let axiosArray = [];
-    for(let page = 0; page < 60; page++){
-      let encodedURI = window.encodeURI("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/studyabroad/data/data-"+ page +".json");
-      axiosArray.push(axios.get(encodedURI))
-    }
-    return axios.all(axiosArray).then((res) => {
-      return res;
-    });
+  getPttData: (board, queries) => {
+    let params = queries.map(query => query.input);
+    let encodeURI = window.encodeURI("https://ptt-search-server.herokuapp.com/api?board=" + board + "&inputs=" + params);
+    return axios.get(encodeURI).then((res) => res);
   }
 };

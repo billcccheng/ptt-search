@@ -10,19 +10,11 @@ class ShowResults extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      dataToDisplay: [],
+      dataToDisplay: {},
     };
   }
-
   componentDidMount(){
     this.getPttData();
-  }
-
-  isDuplicate(seenData, data){
-    if(seenData.has(data.link))
-      return true;
-    seenData.add(data.link);
-    return false;
   }
 
   getPttData(){
@@ -31,29 +23,9 @@ class ShowResults extends React.Component {
       loading: true
     });
 
-    let contentHitObject = {}
-    let seenData = new Set();
-    api.getPttData().then((Obj) => {
-      for(let i = 0; i < Obj.length; i++) {
-        let res = Obj[i];
-        res.data.forEach((datam) => {
-          let data = Object.values(datam).toString().toLowerCase();
-          let queryArray = this.props.query;
-          let hit = queryArray.every((query) => data.includes(query.input.toLowerCase()));
-          if(hit && !this.isDuplicate(seenData, datam)){
-            let date = datam.日期.split(" ");
-            let year = date[date.length-1]; 
-            if(/^\d+$/.test(year)){
-              if(!(year in contentHitObject)){
-                contentHitObject[year] = [];
-              }
-              contentHitObject[year].push(datam);
-            }
-          }
-        });
-      }
+    api.getPttData(this.props.board, this.props.query).then((hits) => {
       this.setState({
-        dataToDisplay: contentHitObject,
+        dataToDisplay: hits.data,
         loading:false
       });
     });
@@ -112,7 +84,7 @@ class SubResults extends React.Component {
       { this.props.results.map((result) => 
           (
             <li key={result.link}>
-              <a href={result.link}>{result.標題.substring(0,50)}</a> 
+              <a href={result.link}>{result.title.substring(0,50)}</a> 
             </li>
           )
         ) 

@@ -17,6 +17,11 @@ body {
   padding:50px;
 }
 
+#board-select {
+  width: 30%;
+  margin: 10px;
+}
+
 #query-box {
   margin-bottom:10px;
 }

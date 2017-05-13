@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button } from 'react-bootstrap';
 import ShowResults from './ShowResults';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import FaHandPointerO from 'react-icons/lib/fa/hand-pointer-o';
+import Smile from 'react-icons/lib/fa/smile-o';
+
 
 function App(props){
   return(
@@ -13,16 +17,57 @@ function App(props){
         <li>  Updates description can be found <a href= "https://github.com/billcccheng/ptt-studyabroad-search/blob/master/README.md#change-logs">here</a></li>
         <li>搜尋第一次可能耗時較久 請耐心等候</li>
       </ul>
-      <Information/>
+      <SelectBoard/>
     </div>
   );
 }
 
-class Information extends React.Component {
+class SelectBoard extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      search: false,
+      board: null,
+    };
+  }
+
+  getSelectBoard(select){
+    this.setState({
+      board: null, 
+    });
+    if(select){
+      this.setState({
+        board: select.value, 
+      });
+    }
+  }
+
+  render(){
+    let options = [
+        { value: 'softjob', label: '軟體版 (Soft_Job)'  },
+        { value: 'studyabroad', label: '留學版 (StudyAbroad)'  }
+    ];
+    return (
+      <div>
+        <div id="board-select">
+          <Select
+              id="select-board"
+              name="form-field-name"
+              placeholder="Select a board"
+              options={options}
+              value={this.state.board}
+              onChange={this.getSelectBoard.bind(this)}
+          />
+        </div>
+        {this.state.board ? <Query board={this.state.board}/> : <div style={{color:"green", marginLeft:"10px"}}><Smile/><b>Plese Select One</b></div>}
+      </div>
+    )
+  }
+}
+
+class Query extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
       inputs:[{input: ""}]
     };
     this.appendInput = this.appendInput.bind(this);
@@ -36,6 +81,7 @@ class Information extends React.Component {
         openSearch = false;
       }
     });
+    
     openSearch && this.state.inputs.length != 0 ? this.setState({search: true, empty: false}) : this.setState({search: false, empty: true});
     event.preventDefault(); 
   }
@@ -92,7 +138,7 @@ class Information extends React.Component {
         <button onClick={this.submitQuery}>
           Submit
         </button>
-        {this.state.search ? <ShowResults query={this.state.inputs}/> : null}
+        {this.state.search ? <ShowResults board={this.props.board} query={this.state.inputs}/> : null}
       </div>
     );
   }
