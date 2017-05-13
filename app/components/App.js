@@ -77,7 +77,7 @@ class Query extends React.Component {
   submitQuery(event){
     let openSearch = true;
     this.state.inputs.map(Obj => {
-      if(Obj.input === ""){
+      if(Obj.input.trim() === ""){
         openSearch = false;
       }
     });
@@ -94,7 +94,7 @@ class Query extends React.Component {
     return (event) => {
       const newInputs = this.state.inputs.map((input, sidx) => {
         if (idx !== sidx) return input;
-        return { input: event.target.value };
+        return { input: event.target.value.trim() };
       });
       this.setState({ 
         inputs: newInputs,
