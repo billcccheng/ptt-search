@@ -56,6 +56,7 @@ If you want to change your port to 8000, just go to `package.json` and change `"
 Thanks to 
 * [KyleAMathews](https://github.com/KyleAMathews/react-spinkit) for the wonderful loading icons.
 * [Gosha Arinich](https://goshakkk.name/array-form-inputs/) for the tutorial on dynamic inputs.
+* [JedWatson](https://github.com/JedWatson/react-select) for react dropdown/select library.
 
 ## License
 MIT License
