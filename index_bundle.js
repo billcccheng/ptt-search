@@ -21142,7 +21142,7 @@ var Query = function (_React$Component2) {
     value: function submitQuery(event) {
       var openSearch = true;
       this.state.inputs.map(function (Obj) {
-        if (Obj.input === "") {
+        if (Obj.input.trim() === "") {
           openSearch = false;
         }
       });
