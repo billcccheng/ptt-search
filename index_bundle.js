@@ -21163,7 +21163,7 @@ var Query = function (_React$Component2) {
       return function (event) {
         var newInputs = _this3.state.inputs.map(function (input, sidx) {
           if (idx !== sidx) return input;
-          return { input: event.target.value };
+          return { input: event.target.value.trim() };
         });
         _this3.setState({
           inputs: newInputs,
