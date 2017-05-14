@@ -21088,7 +21088,7 @@ var SelectBoard = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var options = [{ value: 'Soft_Job', label: '軟體版 (Soft_Job)' }, { value: 'studyabroad', label: '留學版 (StudyAbroad)' }, { value: 'Tech_Job', label: '科技版 (Tech_Job)' }];
+      var options = [{ value: 'Soft_Job', label: '軟體版 (Soft_Job)' }, { value: 'Studyabroad_', label: '留學版 (StudyAbroad)' }, { value: 'Tech_Job', label: '科技版 (Tech_Job)' }];
       return _react2.default.createElement(
         'div',
         null,
@@ -21492,7 +21492,9 @@ module.exports = {
     var params = queries.map(function (query) {
       return query.input;
     });
-    var encodeURI = window.encodeURI("https://ptt-search-server.herokuapp.com/api?board=" + board + "&inputs=" + params);
+    var URI = "https://ptt-search-server.herokuapp.com/api?board=" + board + "&inputs=" + params;
+    //URI = "http://localhost:8081/api?board=" + board + "&inputs=" + params;
+    var encodeURI = window.encodeURI(URI);
     return axios.get(encodeURI).then(function (res) {
       return res;
     });
