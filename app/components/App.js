@@ -12,7 +12,7 @@ function App(props){
   return(
     <div id="query-section">
       <h2 id="welcome-title">Welcome to PTT Search</h2> 
-      <h4>By Bill Cheng (billcccheng@gmail.com) Last Update: 05/09/2017</h4>
+      <h4>By Bill Cheng (billcccheng@gmail.com) Last Update: 05/18/2017</h4>
       <ul>
         <li>  Updates description can be found <a href= "https://github.com/billcccheng/ptt-studyabroad-search/blob/master/README.md#change-logs">here</a></li>
         <li>搜尋第一次可能耗時較久 請耐心等候</li>
@@ -43,9 +43,10 @@ class SelectBoard extends React.Component {
 
   render(){
     let options = [
-        { value: 'Soft_Job', label: '軟體版 (Soft_Job)'  },
-        { value: 'Studyabroad', label: '留學版 (StudyAbroad)'  },
-        { value: 'Tech_Job', label: '科技版 (Tech_Job)'  }
+        { value: 'salary', label: '薪水版 (Salary)'  },
+        { value: 'soft_job', label: '軟體版 (Soft_Job)'  },
+        { value: 'studyabroad', label: '留學版 (StudyAbroad)'  },
+        { value: 'tech_job', label: '科技版 (Tech_Job)'  }
     ];
     return (
       <div>
