@@ -44,6 +44,9 @@ found [here](https://github.com/billcccheng/ptt-search-server)
 5.13.2017
 * Stand up a server to process all the searching to minimize memory usage
 
+5.18
+* Made better UX for mobile
+
 ## Future Update
 * Will add different boards
 * Will have TOEFL GRE analysis for studyabroad board
