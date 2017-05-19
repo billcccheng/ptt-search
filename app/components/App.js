@@ -12,11 +12,7 @@ function App(props){
   return(
     <div id="query-section">
       <h2 id="welcome-title">Welcome to PTT Search</h2> 
-      <h4>By Bill Cheng (billcccheng@gmail.com) Last Update: 05/18/2017</h4>
-      <ul>
-        <li>  Updates description can be found <a href= "https://github.com/billcccheng/ptt-studyabroad-search/blob/master/README.md#change-logs">here</a></li>
-        <li>搜尋第一次可能耗時較久 請耐心等候</li>
-      </ul>
+      <div id="find-text">搜尋第一次可能耗時較久</div>
       <SelectBoard/>
     </div>
   );

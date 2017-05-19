@@ -42,9 +42,13 @@ class ShowResults extends React.Component {
     }
     return (
       <div>
-        <h2>Results</h2>
-        {this.state.loading ? <Spinner spinnerName='wandering-cubes'/> : numberOfData}
-        {this.state.dataToDisplay.length != 0 ? <Results contents={this.state.dataToDisplay}/>: null}   
+        <div id="results">
+          Results
+          {this.state.loading ? <Spinner spinnerName='wandering-cubes'/> : numberOfData}
+        </div>
+        <div>
+          {this.state.dataToDisplay.length != 0 ? <Results contents={this.state.dataToDisplay}/>: null}   
+        </div>
       </div>
     );
   }
@@ -62,7 +66,7 @@ class Results extends React.Component {
           { sortedYears.map(year =>
               (
               <div key={year}>
-                <h3>{year}</h3>
+                {year}
                 <SubResults results={this.props.contents[year]}/>
               </div>
               )
