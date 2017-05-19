@@ -3,6 +3,11 @@ This is a web based search engine for PTT boards of the biggest BBS site,
 [PTT](https://en.wikipedia.org/wiki/PTT_Bulletin_Board_System), in Taiwan and 
 is build in [react](https://facebook.github.io/react-native/). The website is deployed [here](https://billcccheng.github.io/ptt-search/).
 
+**Note: This Repository and App is intended for good use. The ultimate goal of this application is
+to make all information on PTT transparent to others and to bring benefits for people. This does not include
+exploiting information on PTT for personal gains. e.g. I did not put the Stock Board into the web application for
+a reason, people should not try to make money out of this app.** 
+
 ## Installation
 First clone the repository.
 ```
