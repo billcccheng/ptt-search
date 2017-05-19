@@ -128,12 +128,11 @@ and (max-device-width : 425px) {
   
   .footer {
     width: 100%;
-    height: px;
+    height: 55px;
     position: fixed;
-    bottom: 10px;
+    bottom: 0px;
     color: white;
     background-color: #313131;
-    font-size: 30px;
     text-align: center
   }
 }
