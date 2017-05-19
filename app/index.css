@@ -88,7 +88,7 @@ button:active {
   color: #fff;
 }
 
-.footer {
+footer {
   width: 100%;
   height: 25px;
   position: fixed;
@@ -126,11 +126,12 @@ and (max-device-width : 425px) {
     margin: 10px;
   }
   
-  .footer {
+  footer {
     width: 100%;
     height: 55px;
     position: fixed;
     bottom: 0px;
+    padding: 10px;
     color: white;
     background-color: #313131;
     text-align: center
