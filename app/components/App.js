@@ -39,6 +39,7 @@ class SelectBoard extends React.Component {
 
   render(){
     let options = [
+        { value: 'graduate', label: '碩士版 (Graduate)'  },
         { value: 'salary', label: '薪水版 (Salary)'  },
         { value: 'soft_job', label: '軟體版 (Soft_Job)'  },
         { value: 'studyabroad', label: '留學版 (StudyAbroad)'  },
