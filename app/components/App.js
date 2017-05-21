@@ -11,8 +11,10 @@ import Smile from 'react-icons/lib/fa/smile-o';
 function App(props){
   return(
     <div id="query-section">
-      <h2 id="welcome-title">Welcome to PTT Search</h2> 
-      <div id="find-text">搜尋第一次可能耗時較久</div>
+      <div id="welcome-section">
+        <div id="welcome-title">Welcome to PTT Search</div> 
+        <div id="find-text">搜尋第一次可能耗時較久</div>
+      </div>
       <SelectBoard/>
     </div>
   );
