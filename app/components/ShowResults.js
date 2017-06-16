@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom'; 
 import { Button } from 'react-bootstrap';
 import Frown from 'react-icons/lib/fa/frown-o';
-import Spinner from 'react-spinkit';
 import Request from 'react-http-request';
+import Spinner from 'react-spinkit';
 
 class ShowResults extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class ShowResults extends React.Component {
      <Request
        url={"https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params}
        method='get'
-       accept='aplication/json'
+       accept='application/json'
        verbose={false}
      >
         {
