@@ -20673,7 +20673,7 @@ var ShowResults = function (_React$Component) {
           url: "https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params,
           method: 'get',
           accept: 'aplication/json',
-          verbose: true
+          verbose: false
         },
         function (_ref) {
           var error = _ref.error,
@@ -20717,11 +20717,13 @@ var Results = function (_React$Component2) {
         'div',
         null,
         _react2.default.createElement(
-          'div',
+          'h4',
           null,
+          ' Results (',
           this.props.numberOfData,
-          ' Results'
+          ' results) '
         ),
+        _react2.default.createElement('div', null),
         sortedYears.map(function (year) {
           return _react2.default.createElement(
             'div',
