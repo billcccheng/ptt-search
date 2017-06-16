@@ -11,31 +11,31 @@ class ShowResults extends React.Component {
   }
 
   render() {
-		let boards = this.props.board;
-		let params = this.props.query.map(query => query.input);
-		return(
-	   	<Request
-				url={"https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params}
-				method='get'
-				accept='aplication/json'
-				verbose={true}
-		  >
-				 {
+    let boards = this.props.board;
+    let params = this.props.query.map(query => query.input);
+    return(
+       <Request
+        url={"https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params}
+        method='get'
+        accept='aplication/json'
+        verbose={true}
+      >
+         {
           ({error, result, loading}) => {
             if (loading) {
               return <Spinner spinnerName='wandering-cubes'/>;
             } else {
-						  result = JSON.parse(result.text);
-							let numberOfData = 0;
-							Object.keys(result).map(key => {
-								numberOfData += result[key].length;
-							});
+              result = JSON.parse(result.text);
+              let numberOfData = 0;
+              Object.keys(result).map(key => {
+                numberOfData += result[key].length;
+              });
               return <Results numberOfData={numberOfData} contents={result}/>;
             }
           }
         }
-			</Request>
-		);
+      </Request>
+    );
   }
 }
 
@@ -48,8 +48,8 @@ class Results extends React.Component {
     let sortedYears = Object.keys(this.props.contents).reverse();
     return (
         <div>
-					<div>{this.props.numberOfData} Results</div>
-					{ sortedYears.map(year =>
+          <div>{this.props.numberOfData} Results</div>
+          { sortedYears.map(year =>
               (
               <div key={year}>
                 {year}
