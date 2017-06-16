@@ -50,7 +50,6 @@ class Results extends React.Component {
     return (
         <div>
 					<h4> Results ({this.props.numberOfData} results) </h4>
-          <div></div>
           { sortedYears.map(year =>
               (
               <div key={year}>
