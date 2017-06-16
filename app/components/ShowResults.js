@@ -18,7 +18,7 @@ class ShowResults extends React.Component {
        url={"https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params}
        method='get'
        accept='aplication/json'
-       verbose={true}
+       verbose={false}
      >
         {
           ({error, result, loading}) => {
@@ -49,7 +49,8 @@ class Results extends React.Component {
     let sortedYears = Object.keys(this.props.contents).reverse();
     return (
         <div>
-          <div>{this.props.numberOfData} Results</div>
+					<h4> Results ({this.props.numberOfData} results) </h4>
+          <div></div>
           { sortedYears.map(year =>
               (
               <div key={year}>
