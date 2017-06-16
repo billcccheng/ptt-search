@@ -14,13 +14,13 @@ class ShowResults extends React.Component {
     let boards = this.props.board;
     let params = this.props.query.map(query => query.input);
     return(
-       <Request
-        url={"https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params}
-        method='get'
-        accept='aplication/json'
-        verbose={true}
-      >
-         {
+     <Request
+       url={"https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params}
+       method='get'
+       accept='aplication/json'
+       verbose={true}
+     >
+        {
           ({error, result, loading}) => {
             if (loading) {
               return <Spinner spinnerName='wandering-cubes'/>;
@@ -38,6 +38,7 @@ class ShowResults extends React.Component {
     );
   }
 }
+
 
 class Results extends React.Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class Results extends React.Component {
     );
   }
 }
+
 
 class SubResults extends React.Component {
   constructor(props) {

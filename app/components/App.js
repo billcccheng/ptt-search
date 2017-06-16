@@ -20,6 +20,7 @@ function App(props){
   );
 }
 
+
 class SelectBoard extends React.Component {
   constructor(props) {
     super();
@@ -64,6 +65,7 @@ class SelectBoard extends React.Component {
     )
   }
 }
+
 
 class Query extends React.Component {
   constructor(props) {
