@@ -48,18 +48,18 @@ class Results extends React.Component {
   render() {
     let sortedYears = Object.keys(this.props.contents).reverse();
     return (
-        <div>
-					<h4> Results ({this.props.numberOfData} results) </h4>
-          { sortedYears.map(year =>
-              (
-              <div key={year}>
-                {year}
-                <SubResults results={this.props.contents[year]}/>
-              </div>
-              )
-            )
-          }
-        </div>
+			<div>
+				<h4> Results ({this.props.numberOfData} results) </h4>
+				{sortedYears.map(year =>
+						(
+						<div key={year}>
+							{year}
+							<SubResults results = {this.props.contents[year]}/>
+						</div>
+						)
+					)
+				}
+			</div>
     );
   }
 }

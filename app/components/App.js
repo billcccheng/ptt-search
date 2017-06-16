@@ -42,11 +42,11 @@ class SelectBoard extends React.Component {
 
   render(){
     let options = [
-        { value: 'graduate', label: '碩士版 (Graduate)'  },
-        { value: 'salary', label: '薪水版 (Salary)'  },
-        { value: 'soft_job', label: '軟體版 (Soft_Job)'  },
-        { value: 'studyabroad', label: '留學版 (StudyAbroad)'  },
-        { value: 'tech_job', label: '科技版 (Tech_Job)'  }
+        {value: 'graduate', label: '碩士版 (Graduate)'},
+        {value: 'salary', label: '薪水版 (Salary)'},
+        {value: 'soft_job', label: '軟體版 (Soft_Job)'},
+        {value: 'studyabroad', label: '留學版 (StudyAbroad)'},
+        {value: 'tech_job', label: '科技版 (Tech_Job)'}
     ];
     return (
       <div>
