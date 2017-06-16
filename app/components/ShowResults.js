@@ -1,56 +1,41 @@
 import React from 'react'; 
 import ReactDOM from 'react-dom'; 
-import api from '../utils/api';
 import { Button } from 'react-bootstrap';
 import Frown from 'react-icons/lib/fa/frown-o';
-import axios from 'axios';
 import Spinner from 'react-spinkit';
+import Request from 'react-http-request';
 
 class ShowResults extends React.Component {
   constructor(props) {
     super();
-    this.state = {
-      dataToDisplay: {},
-    };
-  }
-  componentDidMount(){
-    this.getPttData();
-  }
-
-  getPttData(){
-    this.setState({
-      dataToDisplay: {},
-      loading: true
-    });
-
-    api.getPttData(this.props.board, this.props.query).then((hits) => {
-      this.setState({
-        dataToDisplay: hits.data,
-        loading:false
-      });
-    });
   }
 
   render() {
-    let numberOfData = 0;
-    if(!this.state.loading){
-      let dataObj = this.state.dataToDisplay;
-      Object.keys(dataObj).map(key => {
-        numberOfData += dataObj[key].length;
-      });
-      numberOfData = <div>{numberOfData} results</div>;
-    }
-    return (
-      <div>
-        <div id="results">
-          Results
-          {this.state.loading ? <Spinner spinnerName='wandering-cubes'/> : numberOfData}
-        </div>
-        <div>
-          {this.state.dataToDisplay.length != 0 ? <Results contents={this.state.dataToDisplay}/>: null}   
-        </div>
-      </div>
-    );
+		let boards = this.props.board;
+		let params = this.props.query.map(query => query.input);
+		return(
+	   	<Request
+				url={"https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params}
+				method='get'
+				accept='aplication/json'
+				verbose={true}
+		  >
+				 {
+          ({error, result, loading}) => {
+            if (loading) {
+              return <Spinner spinnerName='wandering-cubes'/>;
+            } else {
+						  result = JSON.parse(result.text);
+							let numberOfData = 0;
+							Object.keys(result).map(key => {
+								numberOfData += result[key].length;
+							});
+              return <Results numberOfData={numberOfData} contents={result}/>;
+            }
+          }
+        }
+			</Request>
+		);
   }
 }
 
@@ -63,7 +48,8 @@ class Results extends React.Component {
     let sortedYears = Object.keys(this.props.contents).reverse();
     return (
         <div>
-          { sortedYears.map(year =>
+					<div>{this.props.numberOfData} Results</div>
+					{ sortedYears.map(year =>
               (
               <div key={year}>
                 {year}
