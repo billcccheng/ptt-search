@@ -20635,13 +20635,13 @@ var _frownO = __webpack_require__(436);
 
 var _frownO2 = _interopRequireDefault(_frownO);
 
-var _reactSpinkit = __webpack_require__(454);
-
-var _reactSpinkit2 = _interopRequireDefault(_reactSpinkit);
-
 var _reactHttpRequest = __webpack_require__(431);
 
 var _reactHttpRequest2 = _interopRequireDefault(_reactHttpRequest);
+
+var _reactSpinkit = __webpack_require__(454);
+
+var _reactSpinkit2 = _interopRequireDefault(_reactSpinkit);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20672,7 +20672,7 @@ var ShowResults = function (_React$Component) {
         {
           url: "https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params,
           method: 'get',
-          accept: 'aplication/json',
+          accept: 'application/json',
           verbose: false
         },
         function (_ref) {
@@ -20682,6 +20682,8 @@ var ShowResults = function (_React$Component) {
 
           if (loading) {
             return _react2.default.createElement(_reactSpinkit2.default, { spinnerName: 'wandering-cubes' });
+          } else if (error) {
+            return _react2.default.createElement(Error, null);
           } else {
             result = JSON.parse(result.text);
             var numberOfData = 0;
@@ -20698,8 +20700,31 @@ var ShowResults = function (_React$Component) {
   return ShowResults;
 }(_react2.default.Component);
 
-var Results = function (_React$Component2) {
-  _inherits(Results, _React$Component2);
+var Error = function (_React$Component2) {
+  _inherits(Error, _React$Component2);
+
+  function Error(props) {
+    _classCallCheck(this, Error);
+
+    return _possibleConstructorReturn(this, (Error.__proto__ || Object.getPrototypeOf(Error)).call(this));
+  }
+
+  _createClass(Error, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'Error Occured! Try Again Later or contact me @ billcccheng@gmail.com!'
+      );
+    }
+  }]);
+
+  return Error;
+}(_react2.default.Component);
+
+var Results = function (_React$Component3) {
+  _inherits(Results, _React$Component3);
 
   function Results(props) {
     _classCallCheck(this, Results);
@@ -20710,7 +20735,7 @@ var Results = function (_React$Component2) {
   _createClass(Results, [{
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var sortedYears = Object.keys(this.props.contents).reverse();
       return _react2.default.createElement(
@@ -20723,13 +20748,12 @@ var Results = function (_React$Component2) {
           this.props.numberOfData,
           ' results) '
         ),
-        _react2.default.createElement('div', null),
         sortedYears.map(function (year) {
           return _react2.default.createElement(
             'div',
             { key: year },
             year,
-            _react2.default.createElement(SubResults, { results: _this3.props.contents[year] })
+            _react2.default.createElement(SubResults, { results: _this4.props.contents[year] })
           );
         })
       );
@@ -20739,8 +20763,8 @@ var Results = function (_React$Component2) {
   return Results;
 }(_react2.default.Component);
 
-var SubResults = function (_React$Component3) {
-  _inherits(SubResults, _React$Component3);
+var SubResults = function (_React$Component4) {
+  _inherits(SubResults, _React$Component4);
 
   function SubResults(props) {
     _classCallCheck(this, SubResults);
