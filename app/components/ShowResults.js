@@ -14,29 +14,29 @@ class ShowResults extends React.Component {
     let boards = this.props.board;
     let params = this.props.query.map(query => query.input);
     return(
-    <Request
-    url={"https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params}
-    method='get'
-    accept='application/json'
-    verbose={false}
-    >
-      {
-        ({error, result, loading}) => {
-          if (loading) {
-            return <Spinner spinnerName='wandering-cubes'/>;
-          }else if(error) {
-            return <Error/>;
-          }else {
-          result = JSON.parse(result.text);
-            let numberOfData = 0;
-            Object.keys(result).map(key => {
-              numberOfData += result[key].length;
-            });
-            return <Results numberOfData={numberOfData} contents={result}/>;
+      <Request
+        url={"https://ptt-search-server.herokuapp.com/api?board=" + boards + "&inputs=" + params}
+        method='get'
+        accept='application/json'
+        verbose={false}
+      >
+        {
+          ({error, result, loading}) => {
+            if (loading) {
+              return <Spinner spinnerName='wandering-cubes'/>;
+            }else if(error) {
+               return <Error/>;
+            }else {
+               result = JSON.parse(result.text);
+               let numberOfData = 0;
+               Object.keys(result).map(key => {
+                 numberOfData += result[key].length;
+               });
+               return <Results numberOfData={numberOfData} contents={result}/>;
+            }
           }
         }
-      }
-    </Request>
+      </Request>
     );
   }
 }
