@@ -9,7 +9,7 @@ const configs = {
         test: /\.(js)$/, 
         loader: 'babel-loader', 
         query:{
-         presets: ['react', 'es2015']
+          presets: ['react', 'es2015']
         }
       },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] }
