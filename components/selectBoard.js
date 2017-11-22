@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { userSelectBoard } from '../actions/boardActions';
+import InputQuery from './inputQuery';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
@@ -15,7 +16,6 @@ import 'react-select/dist/react-select.css';
 export default class selectBoard extends React.Component {
 
   render(){
-    //console.log(this.props);
     const options = [
           {value: 'graduate', label: '碩士版 (Graduate)'},
           {value: 'salary', label: '薪水版 (Salary)'},
@@ -25,18 +25,20 @@ export default class selectBoard extends React.Component {
         ];
 
     function onBoardChange(board){
-      //console.log(this.props);
       this.props.dispatch(userSelectBoard(board));
     }
 
     return(
-      <Select
-        className="board-select"
-        placeholder="Select a board"
-        value={this.props.boardName}
-        options={options}
-        onChange={onBoardChange.bind(this)}
-      />
+      <div>
+        <Select
+          className="board-select"
+          placeholder="Select a board"
+          value={this.props.boardName}
+          options={options}
+          onChange={onBoardChange.bind(this)}
+        />
+        {this.props.boardState ? <InputQuery board={this.props.boardName} dispatch={this.props.dispatch}/>: null}
+      </div>
     );
   }
 }
