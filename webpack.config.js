@@ -10,7 +10,8 @@ const configs = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader', 
         query:{
-          presets: ['react', 'env']
+          presets: ['react', 'env'],
+          plugins: ['transform-object-rest-spread', 'transform-decorators-legacy']
         }
       },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] }
