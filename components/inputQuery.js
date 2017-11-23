@@ -1,11 +1,11 @@
 import React from 'react';
+import ShowResults from './showResults';
 import { connect } from 'react-redux';
-import { deleteInput } from '../actions/inputQueryActions';
-import { addInput } from '../actions/inputQueryActions';
+import { startSearch, haltSearch } from '../actions/searchActions';
 
 @connect((store) => {
   return {
-    deleteOrNot: store.inputQuery.shouldDeleteInput,
+    openSearch: store.search.openSearch
   };
 })
 export default class inputQuery extends React.Component {
@@ -18,22 +18,28 @@ export default class inputQuery extends React.Component {
     if(shouldAdd) {
       this.setState({inputs: this.state.inputs.concat([""])});
     }else {
-      this.state.inputs.pop();
       this.setState({ 
-        inputs: this.state.inputs,
+        inputs: [...this.state.inputs.slice(0, this.state.inputs.length-1)],
       });
     }
   }
 
   updateInputValue(index, event) {
-    this.state.inputs[index] = event.target.value.trim();
+    const userInput = event.target.value.trim();
+    if(this.state.inputs[index] !== userInput)
+      this.props.dispatch(haltSearch());
+    this.state.inputs[index] = userInput;
   }
 
   submitQuery() {
-    console.log(this.state.inputs);
     let keyWords = this.state.inputs.filter((element) => {
       return element !== "";
     });
+    if(keyWords.length > 0) {
+      this.props.dispatch(startSearch());
+    }else {
+      this.props.dispatch(haltSearch());
+    }
   }
 
   render() { 
@@ -51,7 +57,7 @@ export default class inputQuery extends React.Component {
               className="search-keyword"
               type="text" 
               placeholder="keyword"
-              onChange={this.updateInputValue.bind(this, index)}
+              onBlur={this.updateInputValue.bind(this, index)}
             />
           </div>
           )
@@ -59,6 +65,9 @@ export default class inputQuery extends React.Component {
         <button onClick={this.submitQuery.bind(this)}>
           Submit 
         </button>
+        <div>
+          {this.props.openSearch ? <ShowResults params={this.state.inputs}/> : null}
+        </div>
       </div>
     )
   }
