@@ -1,13 +1,13 @@
-export function deleteInput() {
+export function startSearch() {
   return {
-    type: "DELETE_INPUT",
-    payload: "delete" 
+    type: "START_SEARCH",
+    payload: true 
   }
 }
 
-export function addInput() {
+export function haltSearch() {
   return {
-    type: "ADD_INPUT",
-    payload: "add" 
+    type: "HALT_SEARCH",
+    payload: false 
   }
 }
