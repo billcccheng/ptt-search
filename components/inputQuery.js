@@ -1,7 +1,7 @@
 import React from 'react';
 import ShowResults from './showResults';
 import { connect } from 'react-redux';
-import { startSearch, haltSearch } from '../actions/searchActions';
+import { fetchPTTData } from '../actions/searchActions';
 
 @connect((store) => {
   return {
@@ -25,10 +25,9 @@ export default class inputQuery extends React.Component {
   }
 
   updateInputValue(index, event) {
-    const userInput = event.target.value.trim();
+    let userInput = event.target.value.trim();
     if(this.state.inputs[index] !== userInput)
-      this.props.dispatch(haltSearch());
-    this.state.inputs[index] = userInput;
+      this.state.inputs[index] = userInput;
   }
 
   submitQuery() {
@@ -36,9 +35,7 @@ export default class inputQuery extends React.Component {
       return element !== "";
     });
     if(keyWords.length > 0) {
-      this.props.dispatch(startSearch());
-    }else {
-      this.props.dispatch(haltSearch());
+      this.props.dispatch(fetchPTTData(this.props.board, this.state.inputs));
     }
   }
 
@@ -66,9 +63,9 @@ export default class inputQuery extends React.Component {
           Submit 
         </button>
         <div>
-          {this.props.openSearch ? <ShowResults params={this.state.inputs}/> : null}
+          {this.props.openSearch ? <ShowResults /> : null}
         </div>
       </div>
-    )
+    );
   }
 }
