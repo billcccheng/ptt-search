@@ -3,13 +3,6 @@ body {
   font-family: Gill Sans MT;
 }
 
-#main {
-  background:#efefef;
-  height:100%;
-  margin:50px;
-  padding:50px;
-}
-
 #welcome-title {
   font-size:40px;
   background: white;
@@ -17,6 +10,12 @@ body {
   border-style: solid;
   border-color: #313131;
   margin-bottom: 30px;
+}
+
+#main {
+  background:#efefef;
+  margin:50px;
+  padding:50px;
 }
 
 .loading-symbol {
