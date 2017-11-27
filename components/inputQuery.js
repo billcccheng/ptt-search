@@ -62,9 +62,7 @@ export default class inputQuery extends React.Component {
         <button onClick={this.submitQuery.bind(this)}>
           Submit 
         </button>
-        <div>
-          {this.props.openSearch ? <ShowResults /> : null}
-        </div>
+        {this.props.openSearch ? <ShowResults /> : null}
       </div>
     );
   }

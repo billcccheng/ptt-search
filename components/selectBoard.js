@@ -29,7 +29,11 @@ export default class selectBoard extends React.Component {
     }
 
     return(
-      <div>
+      <div id="main">
+        <div id="welcome-section">
+          <div id="welcome-title">Welcome to PTT Search</div> 
+          <div id="warning">搜尋第一次可能耗時較久</div>
+        </div>
         <Select
           className="board-select"
           placeholder="Select a board"
