@@ -41,7 +41,7 @@ export default class selectBoard extends React.Component {
           options={options}
           onChange={onBoardChange.bind(this)}
         />
-        {this.props.boardState ? <InputQuery board={this.props.boardName} dispatch={this.props.dispatch}/>: null}
+        {this.props.boardState ? <InputQuery board={this.props.boardName}/>: null}
       </div>
     );
   }
