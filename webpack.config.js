@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 const configs = {
   entry: './index.js',
@@ -7,7 +8,7 @@ const configs = {
     rules: [
       { 
         test: /\.(js)$/, 
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules(?!\/webpack-dev-server)/,
         loader: 'babel-loader', 
         query:{
           presets: ['react', 'env'],
@@ -17,9 +18,10 @@ const configs = {
       { test: /\.css$/, use: ['style-loader', 'css-loader'] }
     ],
   },
-  plugins: [new HtmlWebPackPlugin({
-      template: './index.html'
-  })],
+  plugins: [
+    new HtmlWebPackPlugin({template: './index.html'}),
+    new webpack.optimize.UglifyJsPlugin(),
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename:'index_bundle.js'
