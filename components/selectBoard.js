@@ -14,6 +14,14 @@ import 'react-select/dist/react-select.css';
 })
 
 export default class selectBoard extends React.Component {
+  constructor(){
+    super();
+    this.onBoardChange = this.onBoardChange.bind(this);
+  }
+
+  onBoardChange(board){
+    this.props.dispatch(userSelectBoard(board));
+  }
 
   render(){
     const options = [
@@ -23,10 +31,6 @@ export default class selectBoard extends React.Component {
           {value: 'studyabroad', label: '留學版 (StudyAbroad)'},
           {value: 'tech_job', label: '科技版 (Tech_Job)'}
         ];
-
-    function onBoardChange(board){
-      this.props.dispatch(userSelectBoard(board));
-    }
 
     return(
       <div id="main">
@@ -39,7 +43,7 @@ export default class selectBoard extends React.Component {
           placeholder="Select a board"
           value={this.props.boardName}
           options={options}
-          onChange={onBoardChange.bind(this)}
+          onChange={this.onBoardChange}
         />
         {this.props.boardState ? <InputQuery board={this.props.boardName}/>: null}
       </div>

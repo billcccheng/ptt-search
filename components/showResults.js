@@ -15,7 +15,7 @@ export default class showResults extends React.Component {
     if(this.props.PTTDataFetching){
       return(<Spinner className="loading-symbol" name="pacman" />);
     }else if(this.props.error) {
-      return("An Error Occured...Please try again later.");
+      return(<div>"An Error Occured...Please try again later."</div>);
     }else {
       const results = resp.data;
       let numberOfData = 0;

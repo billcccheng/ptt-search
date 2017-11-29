@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const isProd = (process.env.NODE_ENV === 'production');
+
 
 const configs = {
   entry: './index.js',
@@ -20,12 +22,15 @@ const configs = {
   },
   plugins: [
     new HtmlWebPackPlugin({template: './index.html'}),
-    new webpack.optimize.UglifyJsPlugin(),
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename:'index_bundle.js'
   },
+}
+
+if(isProd) {
+  configs.plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
 
 module.exports = configs;

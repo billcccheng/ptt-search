@@ -12,6 +12,8 @@ export default class inputQuery extends React.Component {
   constructor() {
     super();
     this.state = {inputs:[""]};
+    this.submitQuery = this.submitQuery.bind(this);
+    this.enterSubmitQuery = this.enterSubmitQuery.bind(this);
   }
   
   modifyInputField(shouldAdd) {
@@ -28,6 +30,11 @@ export default class inputQuery extends React.Component {
     let userInput = event.target.value.trim();
     if(this.state.inputs[index] !== userInput)
       this.state.inputs[index] = userInput;
+  }
+
+  enterSubmitQuery(event) {
+    if(event.key === 'Enter')
+      this.submitQuery();
   }
 
   submitQuery() {
@@ -54,12 +61,13 @@ export default class inputQuery extends React.Component {
               className="search-keyword"
               type="text" 
               placeholder="keyword"
-              onBlur={this.updateInputValue.bind(this, index)}
+              onChange={this.updateInputValue.bind(this, index)}
+              onKeyDown={this.enterSubmitQuery}
             />
           </div>
           )
         )}
-        <button onClick={this.submitQuery.bind(this)}>
+        <button onClick={this.submitQuery}>
           Submit 
         </button>
         {this.props.openSearch ? <ShowResults /> : null}
