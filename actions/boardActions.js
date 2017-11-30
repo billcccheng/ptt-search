@@ -3,7 +3,6 @@ export function userSelectBoard(board) {
     return {
       type: "USER_SELECTED_BOARD",
       payload: {
-        selectionState: true,
         selectedBoard: board.value
       },
     }
@@ -11,8 +10,7 @@ export function userSelectBoard(board) {
   return {
     type: "USER_DESELECTED_BOARD",
     payload: {
-      selectionState: false,
-      selectedBoard: "" 
+      selectedBoard: "",
     },
   }
 }

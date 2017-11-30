@@ -8,7 +8,7 @@ const initState = {
 export default function reducer(state=initState, action) {
   switch(action.type) {
     case "FETCH_PTT_DATA_PENDING": {
-      return {...state, fetching: true, openSearch: true}
+      return {...state, fetching: true, fetched: false, openSearch: true}
     }
     case "FETCH_PTT_DATA_REJECTED": {
       return {...state, fetching: false, error: true, resp: action.payload}

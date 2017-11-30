@@ -44,6 +44,7 @@ export default class selectBoard extends React.Component {
           value={this.props.boardName}
           options={options}
           onChange={this.onBoardChange}
+          clearable={false}
         />
         {this.props.boardState ? <InputQuery board={this.props.boardName}/>: null}
       </div>

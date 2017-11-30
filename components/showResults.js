@@ -6,31 +6,44 @@ import Spinner from 'react-spinkit';
   return {
     error: store.search.error,
     PTTDataFetching: store.search.fetching,
+    PTTDataFetched: store.search.fetched,
     PTTResponse: store.search.resp
   };
 })
 export default class showResults extends React.Component {
+  constructor() {
+    super();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.sortedYears = [];
+    this.numberOfData = 0;
+    if(nextProps.PTTResponse) {
+      const resp = nextProps.PTTResponse;
+      this.results = resp.data;
+      Object.keys(this.results).map(key => {
+        this.numberOfData += this.results[key].length;
+        this.sortedYears.unshift(key);
+      });
+    }  
+  }
+
   render() {
-    const resp = this.props.PTTResponse;
     if(this.props.PTTDataFetching){
       return(<Spinner className="loading-symbol" name="pacman" />);
     }else if(this.props.error) {
       return(<div>"An Error Occured...Please try again later."</div>);
-    }else {
-      const results = resp.data;
-      let numberOfData = 0;
-      Object.keys(results).map(key => {
-        numberOfData += results[key].length;
-      });
-      const sortedYears = Object.keys(results).reverse();
+    }
+    
+    if(this.props.PTTDataFetched) {
       return(
         <div>
-          <h4> Found {numberOfData} results </h4>
-          {sortedYears.map(year => (
+          <h4> Found {this.numberOfData} results </h4>
+          {this.sortedYears.map(year => (
             <div key={year}>
               {year} 
               <ol>
-                {results[year].map(result => (
+                {this.results[year].map(result => (
                   <li key={result.link}>
                     <a target="_blank" href={result.link}>{result.title.substring(0,50)}</a> 
                   </li>
