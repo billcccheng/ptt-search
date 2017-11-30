@@ -19,10 +19,10 @@ const configs = {
     ],
   },
   plugins: [
-    new HtmlWebPackPlugin({template: './index.html'}),
-    new HtmlWebpackPlugin({
+    new HtmlWebPackPlugin({
+      template: './index.html',
       favicon: './favicon.ico'
-    })
+    }),
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
