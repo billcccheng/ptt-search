@@ -33,9 +33,7 @@ export default class showResults extends React.Component {
       return(<Spinner className="loading-symbol" name="pacman" />);
     }else if(this.props.error) {
       return(<div>"An Error Occured...Please try again later."</div>);
-    }
-    
-    if(this.props.PTTDataFetched) {
+    }else if(this.props.PTTDataFetched) {
       return(
         <div>
           <h4> Found {this.numberOfData} results </h4>
