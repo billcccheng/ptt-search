@@ -19,24 +19,23 @@ body {
 }
 
 .loading-symbol {
-  margin: 25px;
+  margin-top: 25px;
 }
 
 .board-select {
   width: 30%;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin: 10px 5px 5px 0px;
 }
 
 button {
   color:#050; 
   background-color:#fed; 
   border:1px solid; 
-  margin:5px;
+  margin:5px 10px 5px 0px;
 }
 
 input {
-  margin:5px;
+  margin: 5px 0px 5px 0px;
 }
 
 button {
@@ -115,12 +114,8 @@ and (max-device-width : 425px) {
     border-style: solid;
     border-color: #313131;
   }
-  
-  #find-text {
-    margin-top:10px;
-  }
 
-  #board-select {
+  .board-select {
     width:80%; 
   }
 
