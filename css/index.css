@@ -117,7 +117,7 @@ and (max-device-width : 667px) {
 
   .board-select {
     width:50%; 
-    font-size: 30px;
+    font-size: 25px;
   }
 
   #main {
