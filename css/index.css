@@ -99,13 +99,13 @@ footer {
 }
 
 @media only screen 
-and (max-device-width : 425px) {
+and (max-device-width : 667px) {
   #github-banner {
     width: 40px;
   }
 
   #welcome-title {
-    font-size: 17px;
+    font-size: 50px;
     background: white;
     text-align: center;
     padding: 10px;
@@ -116,7 +116,8 @@ and (max-device-width : 425px) {
   }
 
   .board-select {
-    width:80%; 
+    width:50%; 
+    font-size: 30px;
   }
 
   #main {
@@ -124,5 +125,6 @@ and (max-device-width : 425px) {
     margin:10px;
     padding:30px;
     padding-bottom: 40px;
+    font-size:25px;
   }
 }
