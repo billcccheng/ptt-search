@@ -19,7 +19,7 @@ body {
 }
 
 .loading-symbol {
-  margin-top: 25px;
+  margin: 10px 0px 0px 25px;
 }
 
 .board-select {
