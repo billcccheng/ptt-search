@@ -19,7 +19,7 @@ body {
 }
 
 .loading-symbol {
-  margin-top: 25px;
+  margin: 10px 0px 0px 25px;
 }
 
 .board-select {
@@ -99,13 +99,13 @@ footer {
 }
 
 @media only screen 
-and (max-device-width : 425px) {
+and (max-device-width : 667px) {
   #github-banner {
     width: 40px;
   }
 
   #welcome-title {
-    font-size: 17px;
+    font-size: 20px;
     background: white;
     text-align: center;
     padding: 10px;
@@ -116,7 +116,8 @@ and (max-device-width : 425px) {
   }
 
   .board-select {
-    width:80%; 
+    width:100%; 
+    font-size: 20px;
   }
 
   #main {
