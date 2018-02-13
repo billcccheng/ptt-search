@@ -6,13 +6,13 @@ const configs = {
   entry: './index.js',
   module: {
     rules: [
-      { 
-        test: /\.(js)$/, 
+      {
+        test: /\.(js)$/,
         exclude: /node_modules(?!\/webpack-dev-server)/,
-        loader: 'babel-loader', 
+        loader: 'babel-loader',
         query:{
-          presets: ['react', 'env'],
-          plugins: ['transform-object-rest-spread', 'transform-decorators-legacy']
+          presets: ['react', 'env', 'es2015'],
+          plugins: ['transform-object-rest-spread', 'transform-decorators-legacy', 'transform-class-properties']
         }
       },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] }

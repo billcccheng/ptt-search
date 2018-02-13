@@ -12,32 +12,31 @@ export default class inputQuery extends React.Component {
   constructor() {
     super();
     this.state = {inputs:[""]};
-    this.submitQuery = this.submitQuery.bind(this);
-    this.enterSubmitQuery = this.enterSubmitQuery.bind(this);
-  }
-  
-  modifyInputField(shouldAdd) {
-    if(shouldAdd) {
-      this.setState({inputs: this.state.inputs.concat([""])});
-    }else {
-      this.setState({ 
-        inputs: [...this.state.inputs.slice(0, this.state.inputs.length-1)],
-      });
-    }
   }
 
-  updateInputValue(index, event) {
+  addInputField = () => {
+    this.setState({inputs: this.state.inputs.concat([""])});
+  }
+
+  deleteInputField = () => {
+    this.setState({
+      inputs: [...this.state.inputs.slice(0, this.state.inputs.length-1)],
+    });
+  }
+
+  updateInputValue = (event) => {
     let userInput = event.target.value.trim();
+    let index = event.target.name;
     if(this.state.inputs[index] !== userInput)
       this.state.inputs[index] = userInput;
   }
 
-  enterSubmitQuery(event) {
+  enterSubmitQuery = (event) => {
     if(event.key === 'Enter')
       this.submitQuery();
   }
 
-  submitQuery() {
+  submitQuery = () => {
     let keyWords = this.state.inputs.filter((element) => {
       return element !== "";
     });
@@ -46,29 +45,30 @@ export default class inputQuery extends React.Component {
     }
   }
 
-  render() { 
+  render() {
     return(
       <div>
-        <button onClick={this.modifyInputField.bind(this, true)}>
-          增加關鍵字 
+        <button onClick={this.addInputField}>
+          增加關鍵字
         </button>
-        <button onClick={this.modifyInputField.bind(this, false)}>
+        <button onClick={this.deleteInputField}>
           減少關鍵字
         </button>
         {this.state.inputs.map((input, index) => (
           <div key={index}>
-            <input 
+            <input
               className="search-keyword"
-              type="text" 
+              type="text"
               placeholder="keyword"
-              onChange={this.updateInputValue.bind(this, index)}
+              name={index}
+              onChange={this.updateInputValue}
               onKeyDown={this.enterSubmitQuery}
             />
           </div>
           )
         )}
         <button onClick={this.submitQuery}>
-          Submit 
+          Submit
         </button>
         {this.props.openSearch ? <ShowResults /> : null}
       </div>
